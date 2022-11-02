@@ -31,5 +31,5 @@ def commit_transaction(stamp, amount, store):
     cmd = "INSERT INTO transactions VALUES(?, ?, ?)"
     with sqlite3.connect("budget/budget.db") as con:
         cur = con.cursor()
-        res = cur.execute(cmd, (stamp, amount, store))
+        cur.execute(cmd, (stamp, amount, store))
         con.commit()

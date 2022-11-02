@@ -24,19 +24,17 @@ data = [
     (to_date("01.11.22"), -30, "DM"),
     (to_date("01.11.22"), -25, "Rewe"),
     (to_date("01.11.22"), 25, "Daily budget"),
+    (to_date("02.11.22"), 25, "Daily budget"),
 ]
 
 
 def main():
     """Mess around with sqlite."""
-    con = sqlite3.connect("budget/budget.db")
-    cur = con.cursor()
-
-    cur.execute("CREATE TABLE transactions(stamp, amount, store)")
-    cur.executemany("INSERT INTO transactions VALUES(?, ?, ?)", data)
-    con.commit()
-
-    con.close()
+    with sqlite3.connect("budget/budget.db") as con:
+        cur = con.cursor()
+        cur.execute("CREATE TABLE IF NOT EXISTS transactions(stamp, amount, store)")
+        cur.executemany("INSERT INTO transactions VALUES(?, ?, ?)", data)
+        con.commit()
 
 
 if __name__ == "__main__":
