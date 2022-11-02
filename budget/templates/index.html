@@ -1,13 +1,13 @@
 <h1>Leo + Becca's budget app</h1>
 
-<h3>The current balance is {{ balance }}€.</h3>
+<p><strong>The current balance is {{ balance }}€.</strong></p>
 
 <hr>
 
 <form action="{{ url_for('index') }}" method="post">
   <label for="amount">Amount spent:</label><br>
   <input type="text" id="amount" name="amount"><br>
-  <label for="store">Last name:</label><br>
+  <label for="store">Store:</label><br>
   <input type="text" id="store" name="store"><br>
   <input type="submit" value="Submit">
 </form>
